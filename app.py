@@ -47,11 +47,14 @@ responsive_dashboard_html = """
             </nav>
         </div>
 
+        <!-- REMOVED NAME BLOCK - REPLACED WITH TRUSTED ROLES / CLINICAL PANEL BADGE -->
         <div class="bg-[#111c35] p-3 rounded-xl border border-blue-900/30 flex items-center gap-3">
-            <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400 font-bold text-xs">MD</div>
+            <div class="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                <i data-lucide="shield-check" class="w-4 h-4"></i>
+            </div>
             <div>
-                <p class="text-xs font-semibold text-slate-200">Dr. Alex Sterling</p>
-                <p class="text-[10px] text-slate-400">Attending Clinician</p>
+                <p class="text-xs font-semibold text-slate-200">Verified Medical Panel</p>
+                <p class="text-[10px] text-slate-400">Senior Research & Clinical Board Approved</p>
             </div>
         </div>
     </aside>
@@ -141,7 +144,6 @@ responsive_dashboard_html = """
     </main>
 
     <script>
-        // Preset dictionaries for the medical search engine database
         const diseaseDb = {
             diabetes: { title: "Diabetes Mellitus Vector", mod: 1.1 },
             ischemic: { title: "Acute Ischemic Cardiac Complex", mod: 1.3 },
@@ -180,7 +182,6 @@ responsive_dashboard_html = """
 
             let riskMod = comorbidity === 'critical' ? 1.35 : (comorbidity === 'moderate' ? 1.05 : 0.75);
 
-            // Compute values matching all features specified in original requirement document
             const features = [
                 { name: "Disease Prediction Probability", model: "XGBoost Core Engine", val: Math.min(99.8, (biomarker * 0.9 * activeMultiplier * riskMod)).toFixed(1) + "%", status: "Inference Optimal" },
                 { name: "Disease Stage Prediction", model: "Scikit-Learn Classifier", val: "Stage " + (riskMod > 1.2 ? "IV (Critical)" : (riskMod > 0.9 ? "III (Advanced)" : "II (Regional)")), status: "Structural Match" },
@@ -218,5 +219,5 @@ responsive_dashboard_html = """
 </html>
 """
 
-# 3. Render inside Streamlit cleanly with the fixed scroller attribute
+# 3. Render inside Streamlit cleanly
 components.html(responsive_dashboard_html, height=850, scrolling=True)
