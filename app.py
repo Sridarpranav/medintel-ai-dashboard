@@ -274,5 +274,5 @@ responsive_dashboard_html = """
 </html>
 """
 
-# 3. Render inside the Streamlit context seamlessly with full width and viewport calculation height
-components.html(responsive_dashboard_html, height=850, scroller=True)
+# 3. Render inside the Streamlit context seamlessly
+components.html(responsive_dashboard_html, height=850, scrolling=True)
